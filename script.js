@@ -1,21 +1,22 @@
-function setAlarm() {
-  var alarmTime = prompt("À quelle heure veux-tu régler ton alarme ? (Format : HH:MM)");
-  var timeParts = alarmTime.split(":");
-  var hours = parseInt(timeParts[0]);
-  var minutes = parseInt(timeParts[1]);
+// Importe la bibliothèque Recorder.js
+const Recorder = require("recorderjs");
 
-  var now = new Date();
-  var alarm = new Date();
-  alarm.setHours(hours);
-  alarm.setMinutes(minutes);
+// Initialise le microphone
+const recorder = new Recorder();
 
-  var timeDiff = alarm - now;
+// Écoute le clic sur le bouton "Démarrer l'enregistrement"
+document.querySelector("#start").addEventListener("click", () => {
+  // Démarre l'enregistrement
+  recorder.start();
+});
 
-  if (timeDiff > 0) {
-    setTimeout(function() {
-      alert("Réveille-toi !");
-    }, timeDiff);
-    document.getElementById("time").innerHTML = "Alarme réglée à " + alarmTime;
-  } else {
-    alert("L'heure d'alarme doit être dans le futur !");
-  }
+// Écoute le clic sur le bouton "Arrêter l'enregistrement"
+document.querySelector("#stop").addEventListener("click", () => {
+  // Arrête l'enregistrement
+  recorder.stop();
+
+  // Lit l'enregistrement
+  const audio = document.querySelector("#recording");
+  audio.src = recorder.getBlob();
+  audio.play();
+});
