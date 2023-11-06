@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Alarme</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <title>Enregistrement vocal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Alarme</h1>
-  <div id="time"></div>
-  <button onclick="setAlarm()">Définir l'alarme</button>
-
-  <script src="script.js"></script>
+  <div class="container">
+    <h1>Enregistrement vocal</h1>
+    <button id="start">Démarrer l'enregistrement</button>
+    <button id="stop">Arrêter l'enregistrement</button>
+    <audio id="recording" controls></audio>
+  </div>
 </body>
 </html>
